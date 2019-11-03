@@ -15,7 +15,7 @@ module WithingsAPIOAuth2
 
   define_setting :unit_system,     'en_US'
   define_setting :locale,          'en_US'
-  define_setting :scope,           'user.info user.metrics user.activity user.sleepevents'
+  define_setting :scope,           'user.metrics'
 
   define_setting :api_version,     '1'
 

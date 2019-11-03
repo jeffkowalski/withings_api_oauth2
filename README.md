@@ -18,7 +18,7 @@ gem 'withings_api_oauth2'
 
 ## Getting Started
 
-To use the Fitbit API, you must register your application at [dev.fitbit.com](https://dev.fitbit.com/apps). After registering, you should have access to the **CLIENT ID** and **CLIENT SECRET** values for use in instantiating a *WithingsAPIOAuth2::Client* object.
+To use the Withings API, you must register your application at [Withings](https://account.withings.com/partner/add_oauth2). After registering, you should have access to the **CLIENT ID** and **CLIENT SECRET** values for use in instantiating a *WithingsAPIOAuth2::Client* object.
 
 ### Rails
 

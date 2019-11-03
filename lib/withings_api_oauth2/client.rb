@@ -25,7 +25,7 @@ module WithingsAPIOAuth2
     end
 
     def auth_url
-      @client.auth_code.authorize_url(redirect_uri: @redirect_uri, scope: @scope, response_type: 'code')
+      @client.auth_code.authorize_url(redirect_uri: @redirect_uri, scope: @scope, response_type: 'code', state: 'dummystate')
     end
 
     def get_token(auth_code)
@@ -49,7 +49,7 @@ module WithingsAPIOAuth2
     end
 
     def auth_header
-      { 'Authorization' => ('Basic ' + Base64.encode64(@client_id + ':' + @client_secret)) }
+      { 'Authorization' => ('Basic ' + Base64.strict_encode64(@client_id + ':' + @client_secret)) }
     end
 
     def request_headers
