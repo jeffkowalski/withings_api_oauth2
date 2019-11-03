@@ -1,4 +1,4 @@
-module FitbitAPI
+module WithingsAPIOAuth2
   class Client
     def friends(opts={})
       get("user/#{user_id}/friends.json", opts)

@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'fitbit_api/version'
+require 'withings_api_oauth2/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'fitbit_api'
-  spec.version       = FitbitAPI::VERSION
-  spec.authors       = ['Zoran']
+  spec.name          = 'withings_api_oauth2'
+  spec.version       = WithingsAPIOAuth2::VERSION
+  spec.authors       = ['Sven R.']
 
-  spec.summary       = %q{A Ruby interface to the Fitbit Web API.}
-  spec.homepage      = FitbitAPI::REPO_URL
+  spec.summary       = %q{A Ruby interface to the Withings Web API.}
+  spec.homepage      = WithingsAPIOAuth2::REPO_URL
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

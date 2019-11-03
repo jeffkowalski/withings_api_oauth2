@@ -1,4 +1,4 @@
-module FitbitAPI
+module WithingsAPIOAuth2
   class Client
     def heart_rate_time_series(opts={})
       start_date = opts[:start_date]
@@ -6,11 +6,11 @@ module FitbitAPI
       period     = opts[:period]
 
       if [period, start_date].none?
-        raise FitbitAPI::InvalidArgumentError, 'A start_date or period is required.'
+        raise WithingsAPIOAuth2::InvalidArgumentError, 'A start_date or period is required.'
       end
 
       if period && !PERIODS.include?(period)
-        raise FitbitAPI::InvalidArgumentError, "Invalid period: \"#{period}\". Please provide one of the following: #{PERIODS}."
+        raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid period: \"#{period}\". Please provide one of the following: #{PERIODS}."
       end
 
       if period
@@ -29,15 +29,15 @@ module FitbitAPI
       end_time     = opts[:end_time]
 
       if [date, detail_level].any?(&:nil?)
-        raise FitbitAPI::InvalidArgumentError, 'A date and detail_level are required.'
+        raise WithingsAPIOAuth2::InvalidArgumentError, 'A date and detail_level are required.'
       end
 
       unless %(1sec 1min).include? detail_level
-        raise FitbitAPI::InvalidArgumentError, "Invalid detail_level: \"#{detail_level}\". Please provide one of the following: \"1sec\" or \"1min\"."
+        raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid detail_level: \"#{detail_level}\". Please provide one of the following: \"1sec\" or \"1min\"."
       end
 
       if (start_time || end_time) && !(start_time && end_time)
-        raise FitbitAPI::InvalidArgumentError, 'Both start_time and end_time are required if time is being specified.'
+        raise WithingsAPIOAuth2::InvalidArgumentError, 'Both start_time and end_time are required if time is being specified.'
       end
 
       if (start_time && end_time)

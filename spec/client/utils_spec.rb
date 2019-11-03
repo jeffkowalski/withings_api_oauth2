@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe FitbitAPI::Client do
+describe WithingsAPIOAuth2::Client do
   let(:client) do
-    FitbitAPI::Client.new(client_id: 'ABC123', client_secret: 'xyz789')
+    WithingsAPIOAuth2::Client.new(client_id: 'ABC123', client_secret: 'xyz789')
   end
 
   describe '#format_date' do
@@ -18,7 +18,7 @@ describe FitbitAPI::Client do
 
     it 'verifies string input to be of yyyy-MM-dd format' do
       string = '91-9-21'
-      expect{client.format_date string}.to raise_error(FitbitAPI::InvalidArgumentError)
+      expect{client.format_date string}.to raise_error(WithingsAPIOAuth2::InvalidArgumentError)
     end
 
     it 'returns unaltered argument if argument is properly formatted' do
@@ -39,7 +39,7 @@ describe FitbitAPI::Client do
 
     it 'verifies string input to be of HH:mm format' do
       string = '2:45'
-      expect{client.format_time string}.to raise_error(FitbitAPI::InvalidArgumentError)
+      expect{client.format_time string}.to raise_error(WithingsAPIOAuth2::InvalidArgumentError)
     end
 
     it 'returns unaltered argument if argument is properly formatted' do

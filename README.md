@@ -1,36 +1,35 @@
-# FitbitAPI
+# WithingsAPIOAuth2
 
-[![Gem Version](https://badge.fury.io/rb/fitbit_api.svg)](https://badge.fury.io/rb/fitbit_api)
-[![Build Status](https://travis-ci.org/zokioki/fitbit_api.svg?branch=master)](https://travis-ci.org/zokioki/fitbit_api)
+[![Gem Version](https://badge.fury.io/rb/withings_api_oauth2.svg)](https://badge.fury.io/rb/withings_api_oauth2)
 
-FitbitAPI provides a Ruby interface to the [Fitbit Web API](https://dev.fitbit.com/reference/web-api/quickstart).
+WithingsAPIOAuth2 provides a Ruby interface to the [Withings Web API](http://developer.withings.com/oauth2/). It is based on [fitbit_api](https://rubygems.org/gems/fitbit_api) of [Zoran](https://github.com/zokioki).
 
 ## Installation
 
 To install the latest release:
 
-    $ gem install fitbit_api
+    $ gem install withings_api_oauth2
 
 To include in a Rails project, add it to the Gemfile:
 
 ```ruby
-gem 'fitbit_api'
+gem 'withings_api_oauth2'
 ```
 
 ## Getting Started
 
-To use the Fitbit API, you must register your application at [dev.fitbit.com](https://dev.fitbit.com/apps). After registering, you should have access to the **CLIENT ID** and **CLIENT SECRET** values for use in instantiating a *FitbitAPI::Client* object.
+To use the Fitbit API, you must register your application at [dev.fitbit.com](https://dev.fitbit.com/apps). After registering, you should have access to the **CLIENT ID** and **CLIENT SECRET** values for use in instantiating a *WithingsAPIOAuth2::Client* object.
 
 ### Rails
 
-You can reference the [fitbit_api_rails](https://github.com/zokioki/fitbit_api_rails) repo as a simple example of how to use this gem within a Rails project.
+You can reference the [withings_api_oauth_rails](https://github.com/sreuterle/withings_api_oauth2) repo as a simple example of how to use this gem within a Rails project.
 
 ### Quickstart
 
 If you already have a user's token data and Fitbit user_id:
 
 ```ruby
-client = FitbitAPI::Client.new(client_id: 'XXXXXX',
+client = WithingsAPIOAuth2::Client.new(client_id: 'XXXXXX',
                                client_secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
                                access_token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
                                refresh_token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
@@ -43,7 +42,7 @@ client = FitbitAPI::Client.new(client_id: 'XXXXXX',
 - Create a client instance (ensure that `redirect_uri` is passed in):
 
 ```ruby
-client = FitbitAPI::Client.new(client_id: 'XXXXXX',
+client = WithingsAPIOAuth2::Client.new(client_id: 'XXXXXX',
                                client_secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
                                redirect_uri: 'http://example.com/handle/callback')
 ```
@@ -93,7 +92,7 @@ client.log_activity activity_id: 12345, durationMillis: '683300'
 
 ### Options
 
-When initializing a `FitbitAPI::Client` instance, you're given access to a handful of options:
+When initializing a `WithingsAPIOAuth2::Client` instance, you're given access to a handful of options:
 
 - `:api_version` - API version to be used when making requests (default: "1")
 
@@ -110,9 +109,9 @@ When initializing a `FitbitAPI::Client` instance, you're given access to a handf
 If using this library in Rails, you can configure your options using an initializer:
 
 ```ruby
-# config/initializers/fitbit_api.rb
+# config/initializers/withings_api_oauth2.rb
 
-FitbitAPI.configure do |config|
+WithingsAPIOAuth2.configure do |config|
   config.client_id       = 'XXXX'
   config.client_secret   = 'xxxx'
   config.snake_case_keys = true

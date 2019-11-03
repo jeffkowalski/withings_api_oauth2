@@ -1,4 +1,4 @@
-module FitbitAPI
+module WithingsAPIOAuth2
   class Client
     BODY_RESOURCES = %w(bmi fat weight)
 
@@ -16,15 +16,15 @@ module FitbitAPI
       period     = opts[:period]
 
       unless BODY_RESOURCES.include?(resource)
-        raise FitbitAPI::InvalidArgumentError, "Invalid resource: \"#{resource}\". Please provide one of the following: #{BODY_RESOURCES}."
+        raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid resource: \"#{resource}\". Please provide one of the following: #{BODY_RESOURCES}."
       end
 
       if [period, start_date].none?
-        raise FitbitAPI::InvalidArgumentError, 'A start_date or period is required.'
+        raise WithingsAPIOAuth2::InvalidArgumentError, 'A start_date or period is required.'
       end
 
       if period && !PERIODS.include?(period)
-        raise FitbitAPI::InvalidArgumentError, "Invalid period: \"#{period}\". Please provide one of the following: #{PERIODS}."
+        raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid period: \"#{period}\". Please provide one of the following: #{PERIODS}."
       end
 
       if period

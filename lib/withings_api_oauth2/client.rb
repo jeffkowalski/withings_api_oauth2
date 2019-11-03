@@ -1,17 +1,17 @@
-require 'fitbit_api/base'
-require 'fitbit_api/activities'
-require 'fitbit_api/heart_rate'
-require 'fitbit_api/goals'
-require 'fitbit_api/alarms'
-require 'fitbit_api/body'
-require 'fitbit_api/devices'
-require 'fitbit_api/food'
-require 'fitbit_api/friends'
-require 'fitbit_api/sleep'
-require 'fitbit_api/user'
-require 'fitbit_api/water'
+require 'withings_api_oauth2/base'
+require 'withings_api_oauth2/activities'
+require 'withings_api_oauth2/heart_rate'
+require 'withings_api_oauth2/goals'
+require 'withings_api_oauth2/alarms'
+require 'withings_api_oauth2/body'
+require 'withings_api_oauth2/devices'
+require 'withings_api_oauth2/food'
+require 'withings_api_oauth2/friends'
+require 'withings_api_oauth2/sleep'
+require 'withings_api_oauth2/user'
+require 'withings_api_oauth2/water'
 
-module FitbitAPI
+module WithingsAPIOAuth2
   class Client
     attr_accessor :api_version, :unit_system, :locale, :scope,
                   :snake_case_keys, :symbolize_keys
@@ -54,7 +54,7 @@ module FitbitAPI
 
     def request_headers
       {
-        'User-Agent' => "fitbit_api-#{FitbitAPI::VERSION} gem (#{FitbitAPI::REPO_URL})",
+        'User-Agent' => "withings_api_oauth2-#{WithingsAPIOAuth2::VERSION} gem (#{WithingsAPIOAuth2::REPO_URL})",
         'Accept-Language' => @unit_system,
         'Accept-Locale' => @locale
       }
@@ -92,11 +92,11 @@ module FitbitAPI
       missing_args = []
 
       required_args.each do |arg|
-        missing_args << arg if (opts[arg] || FitbitAPI.send(arg)).nil?
+        missing_args << arg if (opts[arg] || WithingsAPIOAuth2.send(arg)).nil?
       end
 
       return if missing_args.empty?
-      raise FitbitAPI::InvalidArgumentError,
+      raise WithingsAPIOAuth2::InvalidArgumentError,
             "Required arguments: #{missing_args.join(', ')}"
     end
 
@@ -106,7 +106,7 @@ module FitbitAPI
                  api_version snake_case_keys symbolize_keys].freeze
 
       attrs.each do |attr|
-        instance_variable_set("@#{attr}", (opts[attr] || FitbitAPI.send(attr)))
+        instance_variable_set("@#{attr}", (opts[attr] || WithingsAPIOAuth2.send(attr)))
       end
 
       @user_id = opts[:user_id]
@@ -126,7 +126,7 @@ module FitbitAPI
       return unless opts[:access_token] || opts[:refresh_token]
 
       if opts[:access_token] && !opts[:user_id]
-        raise FitbitAPI::InvalidArgumentError,
+        raise WithingsAPIOAuth2::InvalidArgumentError,
               'user_id is required if using existing access token'
       end
 

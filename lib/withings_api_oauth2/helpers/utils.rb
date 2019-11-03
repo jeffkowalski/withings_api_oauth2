@@ -1,4 +1,4 @@
-module FitbitAPI
+module WithingsAPIOAuth2
   class Client
 
     PERIODS = %w(1d 7d 30d 1w 1m 3m 6m 1y max).freeze
@@ -10,10 +10,10 @@ module FitbitAPI
         if date =~ /\d{4}\-\d{2}\-\d{2}/
           date
         else
-          raise FitbitAPI::InvalidArgumentError, "Invalid argument [\"#{date}\"] - string must follow yyyy-MM-dd format."
+          raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid argument [\"#{date}\"] - string must follow yyyy-MM-dd format."
         end
       else
-        raise FitbitAPI::InvalidArgumentError, "Invalid type [#{date.class}] - provide a Date/Time/DateTime or a String(yyyy-MM-dd format)."
+        raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid type [#{date.class}] - provide a Date/Time/DateTime or a String(yyyy-MM-dd format)."
       end
     end
 
@@ -24,10 +24,10 @@ module FitbitAPI
         if time =~ /\d{2}\:\d{2}/
           time
         else
-          raise FitbitAPI::InvalidArgumentError, "Invalid argument [\"#{time}\"] - string must follow HH:mm format."
+          raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid argument [\"#{time}\"] - string must follow HH:mm format."
         end
       else
-        raise FitbitAPI::InvalidArgumentError, "Invalid type [#{time.class}] - provide a Time/DateTime or a String(HH:mm format)."
+        raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid type [#{time.class}] - provide a Time/DateTime or a String(HH:mm format)."
       end
     end
 

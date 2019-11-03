@@ -1,4 +1,4 @@
-module FitbitAPI
+module WithingsAPIOAuth2
   class Client
     # GET Alarms
     # ==========

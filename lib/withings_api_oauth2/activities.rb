@@ -1,4 +1,4 @@
-module FitbitAPI
+module WithingsAPIOAuth2
   class Client
 
     ACTIVITY_RESOURCES = %w(calories caloriesBMR steps distance floors elevation
@@ -89,15 +89,15 @@ module FitbitAPI
       period     = opts[:period]
 
       unless ACTIVITY_RESOURCES.include?(resource)
-        raise FitbitAPI::InvalidArgumentError, "Invalid resource: \"#{resource}\". Please provide one of the following: #{ACTIVITY_RESOURCES}."
+        raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid resource: \"#{resource}\". Please provide one of the following: #{ACTIVITY_RESOURCES}."
       end
 
       if [start_date, period].none?
-        raise FitbitAPI::InvalidArgumentError, 'A start_date or period is required.'
+        raise WithingsAPIOAuth2::InvalidArgumentError, 'A start_date or period is required.'
       end
 
       if period && !PERIODS.include?(period)
-        raise FitbitAPI::InvalidArgumentError, "Invalid period: \"#{period}\". Please provide one of the following: #{PERIODS}."
+        raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid period: \"#{period}\". Please provide one of the following: #{PERIODS}."
       end
 
       if period
@@ -116,19 +116,19 @@ module FitbitAPI
       end_time     = opts[:end_time]
 
       unless ACTIVITY_INTRADAY_RESOURCES.include?(resource)
-        raise FitbitAPI::InvalidArgumentError, "Invalid resource: \"#{resource}\". Please provide one of the following: #{ACTIVITY_RESOURCES}."
+        raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid resource: \"#{resource}\". Please provide one of the following: #{ACTIVITY_RESOURCES}."
       end
 
       if [date, detail_level].any?(&:nil?)
-        raise FitbitAPI::InvalidArgumentError, 'A date and detail_level are required.'
+        raise WithingsAPIOAuth2::InvalidArgumentError, 'A date and detail_level are required.'
       end
 
       unless %(1min 15min).include? detail_level
-        raise FitbitAPI::InvalidArgumentError, "Invalid detail_level: \"#{detail_level}\". Please provide one of the following: \"1min\" or \"15min\"."
+        raise WithingsAPIOAuth2::InvalidArgumentError, "Invalid detail_level: \"#{detail_level}\". Please provide one of the following: \"1min\" or \"15min\"."
       end
 
       if (start_time || end_time) && !(start_time && end_time)
-        raise FitbitAPI::InvalidArgumentError, 'Both start_time and end_time are required if time is being specified.'
+        raise WithingsAPIOAuth2::InvalidArgumentError, 'Both start_time and end_time are required if time is being specified.'
       end
 
       if (start_time && end_time)
