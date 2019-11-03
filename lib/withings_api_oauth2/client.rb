@@ -25,7 +25,7 @@ module WithingsAPIOAuth2
     end
 
     def auth_url
-      @client.auth_code.authorize_url(redirect_uri: @redirect_uri, scope: @scope)
+      @client.auth_code.authorize_url(redirect_uri: @redirect_uri, scope: @scope, response_type: 'code')
     end
 
     def get_token(auth_code)
