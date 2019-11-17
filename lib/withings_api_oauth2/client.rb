@@ -1,15 +1,5 @@
 require 'withings_api_oauth2/base'
-require 'withings_api_oauth2/activities'
-require 'withings_api_oauth2/heart_rate'
-require 'withings_api_oauth2/goals'
-require 'withings_api_oauth2/alarms'
-require 'withings_api_oauth2/body'
-require 'withings_api_oauth2/devices'
-require 'withings_api_oauth2/food'
-require 'withings_api_oauth2/friends'
-require 'withings_api_oauth2/sleep'
-require 'withings_api_oauth2/user'
-require 'withings_api_oauth2/water'
+require 'withings_api_oauth2/measure'
 
 module WithingsAPIOAuth2
   class Client
