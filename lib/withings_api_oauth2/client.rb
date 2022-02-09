@@ -21,6 +21,7 @@ module WithingsAPIOAuth2
     def get_token(auth_code)
       @token = @client.auth_code.get_token(
         auth_code,
+        action: 'requesttoken',  # FIXME
         redirect_uri: @redirect_uri,
         headers: auth_header
       )
@@ -33,7 +34,7 @@ module WithingsAPIOAuth2
     end
 
     def refresh_token!
-      @token = @token.refresh!(headers: auth_header)
+      @token = @token.refresh!(action: 'requesttoken', headers: auth_header)
       @user_id ||= @token.params['user_id']
       @token
     end
@@ -108,8 +109,14 @@ module WithingsAPIOAuth2
         @client_secret,
         site: @site_url,
         authorize_url: @authorize_url,
-        token_url: @token_url
+        token_url: @token_url,
+        extract_access_token: EXTRACT_ACCESS_TOKEN
       )
+    end
+
+    EXTRACT_ACCESS_TOKEN = proc do |client, hash|
+      token = hash['body'].delete('access_token')
+      token && OAuth2::AccessToken.new(client, token, hash['body'])
     end
 
     def establish_token(opts)
