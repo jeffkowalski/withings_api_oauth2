@@ -21,7 +21,7 @@ module WithingsAPIOAuth2
     def get_token(auth_code)
       @token = @client.auth_code.get_token(
         auth_code,
-        action: 'requesttoken',  # FIXME
+        action: 'requesttoken',
         redirect_uri: @redirect_uri,
         headers: auth_header
       )

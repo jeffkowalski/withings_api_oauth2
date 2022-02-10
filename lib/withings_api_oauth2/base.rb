@@ -11,7 +11,7 @@ module WithingsAPIOAuth2
 
   define_setting :site_url,        'https://wbsapi.withings.net'
   define_setting :authorize_url,   'https://account.withings.com/oauth2_user/authorize2'
-  define_setting :token_url,       'https://account.withings.com/oauth2/token'
+  define_setting :token_url,       'https://wbsapi.withings.net/v2/oauth2'
 
   define_setting :unit_system,     'en_US'
   define_setting :locale,          'en_US'
