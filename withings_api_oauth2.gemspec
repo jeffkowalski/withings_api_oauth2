@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = WithingsAPIOAuth2::VERSION
   spec.authors       = ['Sven R.']
 
-  spec.summary       = %q{A Ruby interface to the Withings Web API.}
+  spec.summary       = 'A Ruby interface to the Withings Web API.'
   spec.homepage      = WithingsAPIOAuth2::REPO_URL
   spec.license       = 'MIT'
 
