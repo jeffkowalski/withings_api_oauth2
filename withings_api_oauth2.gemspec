@@ -20,8 +20,8 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency     'oauth2', '~> 1.0'
 
+  spec.add_development_dependency 'bundler', '~> 4.0'
   spec.add_development_dependency 'byebug'
-  spec.add_development_dependency 'bundler', '~> 2.3'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec'
 end
