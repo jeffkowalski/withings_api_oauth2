@@ -94,7 +94,7 @@ client.log_activity activity_id: 12345, durationMillis: '683300'
 
 When initializing a `WithingsAPIOAuth2::Client` instance, you're given access to a handful of options:
 
-- `:api_version` - API version to be used when making requests (default: "1")
+- `:api_version` - API version path prefix to be used when making requests, e.g. "v2" (default: nil, since Withings serves unversioned endpoints like /measure at the site root)
 
 - `:unit_system` - The measurement unit system to use for response values (default: "en_US" | available: "en_US", "en_GB", and "any" for metric)
 

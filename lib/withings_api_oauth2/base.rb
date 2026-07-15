@@ -17,7 +17,7 @@ module WithingsAPIOAuth2
   define_setting :locale,          'en_US'
   define_setting :scope,           'user.metrics'
 
-  define_setting :api_version,     '1'
+  define_setting :api_version,     nil
 
   define_setting :snake_case_keys, false
   define_setting :symbolize_keys,  false

@@ -53,19 +53,19 @@ module WithingsAPIOAuth2
 
     def get(path, opts={})
       params = opts.delete(:params) || {}
-      response = token.get(("#{@api_version}/" + path), params: deep_keys_to_camel_case!(params), headers: request_headers).response
+      response = token.get(request_path(path), params: deep_keys_to_camel_case!(params), headers: request_headers).response
       object = MultiJson.load(response.body) unless response.status == 204
       process_keys!(object, opts)
     end
 
     def post(path, opts={})
-      response = token.post(("#{@api_version}/" + path), body: deep_keys_to_camel_case!(opts), headers: request_headers).response
+      response = token.post(request_path(path), body: deep_keys_to_camel_case!(opts), headers: request_headers).response
       object = MultiJson.load(response.body) unless response.status == 204
       process_keys!(object, opts)
     end
 
     def delete(path, opts={})
-      response = token.delete(("#{@api_version}/" + path), headers: request_headers).response
+      response = token.delete(request_path(path), headers: request_headers).response
       object = MultiJson.load(response.body) unless response.status == 204
       process_keys!(object, opts)
     end
@@ -77,6 +77,16 @@ module WithingsAPIOAuth2
     end
 
     private
+
+    # Withings serves unversioned endpoints at the site root (e.g. /measure)
+    # and versioned ones under a prefix (e.g. /v2/measure). Join the optional
+    # api_version and path without introducing empty segments, since the API
+    # rejects paths containing a version segment it doesn't recognize.
+    def request_path(path)
+      [@api_version, path].map { |part| part.to_s.gsub(%r{\A/+|/+\z}, '') }
+                          .reject(&:empty?)
+                          .join('/')
+    end
 
     def validate_args(opts)
       required_args = %i[client_id client_secret].freeze
